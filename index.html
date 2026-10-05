@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn sem Mistério — Col. Estadual Duque de Caxias | Salvador-BA</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root{
+  --li-blue:#0A66C2; --li-dark:#004182; --li-light:#E8F3FC;
+  --bg:#F4F2EE; --card:#FFFFFF; --ink:#191919; --muted:#666666;
+  --border:#E0DDD8; --green:#057642; --green-bg:#E7F5EC;
+  --amber:#7A5800; --amber-bg:#FDF3D7; --radius:16px;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --font-h:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-h);overflow:hidden}
+.slide-deck{position:relative;width:100vw;height:100vh;overflow:hidden}
+@media(min-width:769px){.slide-deck{max-width:calc(100vh * 16 / 9);max-height:calc(100vw * 9 / 16);margin:auto;position:absolute;inset:0;box-shadow:0 20px 80px rgba(0,0,0,.18);overflow:hidden}}
+.slide{position:absolute;width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:32px 40px;opacity:0;visibility:hidden;transform:translateY(10px) scale(.995);transition:opacity 220ms var(--ease-out),transform 220ms var(--ease-out),visibility 220ms;background:var(--bg);overflow:hidden}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.slide-content{width:100%;max-width:1200px;margin:0 auto;max-height:100%;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.step{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hero-split{display:grid;grid-template-columns:1.08fr .92fr;gap:24px;align-items:center}
+.hero-cards{display:flex;flex-direction:column;gap:10px}
+.slide .card{animation:rise 240ms var(--ease-out) backwards}
+.slide .card:nth-child(2){animation-delay:50ms}.slide .card:nth-child(3){animation-delay:100ms}
+@keyframes rise{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:none}}
+.kicker{display:inline-flex;align-items:center;gap:8px;background:var(--li-light);color:var(--li-dark);font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:7px 14px;border-radius:999px;width:fit-content}
+h1.slide-title{font-size:clamp(30px,5vw,60px);line-height:1.02;color:var(--li-dark);letter-spacing:-.02em}
+h1.slide-title span{color:var(--li-blue)}
+h2{font-size:clamp(22px,3.2vw,36px);color:var(--li-dark);line-height:1.1}
+p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-width:64ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;text-align:left;box-shadow:0 4px 16px rgba(0,0,0,.06)}
+.card h3{font-size:16px;color:var(--li-dark);margin-bottom:6px}
+.card p,.card li{font-size:14px;color:#333;line-height:1.5}
+.card ul{padding-left:18px}
+.icon{width:38px;height:38px;border-radius:11px;background:var(--li-light);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:8px}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logos{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.badge-school{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:5px 13px 5px 5px;font-size:13px;font-weight:600;color:var(--li-dark)}
+.progress-bar{position:fixed;top:0;left:0;height:4px;width:100%;background:var(--li-blue);transform-origin:left;transform:scaleX(0);transition:transform 250ms var(--ease-out);z-index:1000}
+.nav-controls{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:14px;z-index:1000;background:rgba(255,255,255,.92);border:1px solid var(--border);padding:7px 13px;border-radius:999px}
+.nav-btn{background:var(--li-blue);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;transition:transform 160ms var(--ease-out),background 160ms var(--ease-out)}
+@media(hover:hover) and (pointer:fine){.nav-btn:hover{background:var(--li-dark);transform:translateY(-1px)}}
+.nav-btn:active{transform:scale(.93)}
+@media(prefers-reduced-motion:reduce){.slide,.slide .card{animation:none;transition-duration:1ms}.nav-btn{transition:none}}
+.slide-counter{color:var(--muted);font-size:13px;font-weight:600}
+.hint{position:fixed;top:12px;right:14px;z-index:1000;font-size:12px;color:var(--muted);background:rgba(255,255,255,.85);padding:6px 12px;border-radius:999px;border:1px solid var(--border)}
+.mock{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;text-align:left;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.mock-head{background:var(--li-blue);color:#fff;padding:9px 13px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700}
+.mock-head .dots{display:flex;gap:5px}.mock-head .dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.7);display:block}
+.mock-body{padding:13px}
+.mini-profile-cover{height:54px;background:linear-gradient(135deg,var(--li-blue),#378FE9);border-radius:8px}
+.mini-avatar{width:50px;height:50px;border-radius:50%;background:#ddd;border:3px solid #fff;margin:-25px 0 0 12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--li-dark)}
+.mini-line{height:10px;border-radius:99px;background:#EAE6DF;margin:8px 0}
+.mini-btn{background:var(--li-blue);color:#fff;font-size:12px;font-weight:700;border-radius:99px;padding:6px 12px;display:inline-block;margin-top:6px}
+.job-row{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:9px;margin-top:8px}
+.job-logo{width:34px;height:34px;border-radius:8px;background:var(--li-light);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--li-blue);flex-shrink:0}
+.pill{font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;display:inline-block}
+.pill.green{background:var(--green-bg);color:var(--green)}.pill.amber{background:var(--amber-bg);color:var(--amber)}.pill.blue{background:var(--li-light);color:var(--li-dark)}
+.check{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:12px;padding:11px 13px;font-size:13.5px}
+.check b{color:var(--li-dark)}
+.cover-slide{background:linear-gradient(180deg,#fff 0%,#E8F3FC 55%,#D9EAFB 100%)}
+.cta{background:var(--li-blue);color:#fff;border-radius:var(--radius);padding:20px;display:flex;gap:16px;align-items:center;text-align:left}
+.qr{width:92px;height:92px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--li-blue);font-weight:900;font-size:12px;text-align:center;line-height:1.3;flex-shrink:0}
+.flag-no{border-top:3px solid #C21F0A}
+.flag-ok{border-top:3px solid var(--green)}
+@media(max-width:900px){.hero-split{grid-template-columns:1fr}}
+@media(max-width:768px){.slide{padding:26px 18px}.grid2,.grid3{grid-template-columns:1fr;gap:10px}.hint{display:none}}
+@media print{.nav-controls,.hint,.progress-bar{display:none}.slide{position:relative;opacity:1;visibility:visible;height:auto;page-break-after:always}}
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progressBar"></div>
+<div class="hint">&#8592; &#8594; navegar &nbsp;•&nbsp; F = tela cheia &nbsp;•&nbsp; P = imprimir</div>
+<div class="slide-deck">
+
+<div class="slide active cover-slide"><div class="slide-content">
+<div class="topbar"><div class="logos">
+<svg width="132" height="32" viewBox="0 0 132 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="LinkedIn"><rect x="0" y="0" width="32" height="32" rx="6" fill="#0A66C2"/><text x="16" y="23.5" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="20" fill="#fff">in</text><text x="38" y="23" font-family="Segoe UI, Arial" font-weight="700" font-size="20" fill="#0A66C2">LinkedIn</text></svg>
+<div class="badge-school">
+<svg width="30" height="34" viewBox="0 0 32 36" xmlns="http://www.w3.org/2000/svg" aria-label="Colegio Duque de Caxias"><path d="M16 1 L29 6 V17 C29 26 22 32 16 35 C10 32 3 26 3 17 V6 Z" fill="none" stroke="#0A66C2" stroke-width="2"/><path d="M16 5 L25 8.5 V17 C25 23.5 20.5 28 16 30.5 C11.5 28 7 23.5 7 17 V8.5 Z" fill="#E8F3FC"/><text x="16" y="18" text-anchor="middle" font-size="7.5" font-weight="800" fill="#004182">DUQUE</text><text x="16" y="24" text-anchor="middle" font-size="6" font-weight="700" fill="#004182">DE CAXIAS</text></svg>
+<span>Duque de Caxias • Salvador-BA</span></div></div>
+<span class="kicker">Ensino Tecnico • 30 min</span></div>
+<h1 class="slide-title">LinkedIn sem mistério:<br><span>do zero ao primeiro estágio</span></h1>
+<p class="sub">Para quem nunca usou. Linguagem simples, passo a passo e exemplos prontos para copiar. Feita para as turmas do <b>Colegio Estadual Duque de Caxias</b>.</p>
+<div class="hero-split">
+<div class="card" style="background:transparent;border:none;box-shadow:none;padding:0"><div class="icon">🚀</div><h3 style="font-size:18px">Em 30 minutos voce sai com perfil criado e 5 vagas na mira.</h3><p style="font-size:11px;color:var(--muted)">Logos em SVG transparente (sem fundo branco). Brasao do colegio e representacao limpa.</p></div>
+<div class="hero-cards">
+<div class="card"><h3>🎯 Breve e direta</h3><p>10 telas. Sem enrolação.</p></div>
+<div class="card"><h3>🧰 Para tecnico</h3><p>Adm, Informatica, Logistica, Enfermagem.</p></div>
+<div class="card"><h3>💼 Com vaga</h3><p>Alertas e candidatura em 1 clique.</p></div>
+</div>
+</div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="step">01 — O que e?</span>
+<h2>LinkedIn e seu curriculo vivo + rede de contatos</h2>
+<p class="sub">Pense assim: <b>Instagram mostra sua vida. LinkedIn mostra seu lado profissional.</b> Recrutador procura gente la todo dia.</p>
+<div class="grid3">
+<div class="card"><div class="icon">📄</div><h3>Curriculo que se atualiza</h3><p>Curso, estagio, projeto, certificado. Tudo fica visivel no Google.</p></div>
+<div class="card"><div class="icon">🤝</div><h3>Rede que indica</h3><p>Colegas, professores, empresas. Muitas vagas vem por indicacao.</p></div>
+<div class="card"><div class="icon">📚</div><h3>Escola gratis</h3><p>Posts, vagas e cursos. Voce aprende como o mercado fala.</p></div>
+</div>
+<div class="card" style="display:flex;gap:12px;align-items:center"><span class="pill green">DADO</span><p>+1 bilhao de usuarios no mundo • 75 milhoes no Brasil • 9 em cada 10 recrutadores usam LinkedIn.</p></div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="kicker">2 • Por que usar ainda estudante?</span>
+<h2>Quem aparece, e lembrado</h2>
+<div class="grid2">
+<div><div style="width:100%;height:250px"><canvas id="chartMotivos"></canvas></div>
+<p style="font-size:11px;color:var(--muted)">Grafico ilustrativo: o que mais ajuda tecnico a conseguir estagio.</p></div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<div class="check">✅ <span><b>Estagio e Jovem Aprendiz</b> — empresas postam primeiro no LinkedIn.</span></div>
+<div class="check">✅ <span><b>Sem experiencia?</b> Vale projeto da escola, feira, monitoria, voluntariado.</span></div>
+<div class="check">✅ <span><b>Professor vira ponte</b> — ele curte, comenta e te indica.</span></div>
+<div class="check">⚠️ <span><b>E gratis.</b> Nao pague Premium agora. O gratuito resolve.</span></div>
+</div></div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="kicker">3 • Tour de 60 segundos</span>
+<h2>3 telas que voce vai usar</h2>
+<p class="sub">Representacao simplificada do layout real — no seu celular e igual, azul e branco.</p>
+<div class="grid3">
+<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Perfil</div><div class="mock-body"><div class="mini-profile-cover"></div><div class="mini-avatar">VC</div><div class="mini-line" style="width:70%"></div><div class="mini-line" style="width:50%"></div><span class="pill blue">Tecnico em Informatica • Salvador</span><br><span class="mini-btn">+ Seguir • Conectar</span></div></div>
+<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Feed</div><div class="mock-body"><div class="job-row"><div class="job-logo">🏢</div><div><b style="font-size:13px">Hospital Santa Clara</b><p style="font-size:12px;color:var(--muted)">Contratando estagiarios…</p></div></div><div class="mini-line"></div><div class="mini-line" style="width:80%"></div><span class="pill green">Curtir • Comentar • Repostar</span></div></div>
+<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Vagas</div><div class="mock-body"><div class="mini-line" style="width:90%;height:26px;background:var(--li-light)"></div><div class="job-row"><div class="job-logo">💼</div><div><b style="font-size:13px">Estagio Administrativo</b><p style="font-size:12px">R$ 800 • Hibrido • Salvador</p></div></div><span class="mini-btn">Candidatura simples</span></div></div>
+</div>
+<p style="font-size:11px;color:var(--muted)">Dica ao professor: abra linkedin.com no projetor e mostre ao vivo. Estes quadros sao guia para quando a internet falhar. Para prints reais, use Win+Shift+S.</p>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="step">04 — Perfil campeao, parte 1</span>
+<h2>Foto + capa + titulo = 1ª impressao</h2>
+<div class="grid2">
+<div class="card"><div class="icon">📸</div><h3>Foto (celular resolve)</h3><ul><li>Fundo claro, ombros pra cima, sorriso leve</li><li>Sem oculos escuros, sem filtro</li><li>Capa: cor solida ou foto da sua area</li></ul><br><h3>Titulo — copie e adapte:</h3><p style="background:var(--bg);border-radius:8px;padding:10px">“Estudante de Tecnico em ___ | Busco estagio em ___ | Salvador-BA”</p><p style="font-size:12px">Ex: <i>Estudante de Tecnico em Administracao | Busco estagio administrativo | Salvador-BA</i></p></div>
+<div class="card"><div class="icon">✍️</div><h3>Sobre — 4 linhas prontas</h3><p>“Sou [nome], estudante do [curso] no Colegio Duque de Caxias. Tenho [Excel, atendimento, manutencao…]. Fiz [projeto/feira/curso]. Busco estagio para aprender na pratica e ajudar a equipe.”</p><br><span class="pill amber">Evite</span><p>Deixar em branco • “Em busca de oportunidades” sem dizer qual • Erro de portugues — revise.</p></div>
+</div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="step">05 — Perfil campeao, parte 2</span>
+<h2>Experiencia conta mesmo sem emprego</h2>
+<div class="grid3">
+<div class="card"><div class="icon">🛠️</div><h3>O que colocar</h3><ul><li>Projeto escolar / TCC</li><li>Feira, monitoria, voluntariado</li><li>Curso livre + certificado</li><li>Informal vale: “Ajuda na loja — caixa e estoque”</li></ul></div>
+<div class="card"><div class="icon">🏅</div><h3>Competencias (5)</h3><p>Adm: Excel, Atendimento, Organizacao, Rotinas administrativas, Canva.<br>Info: Informatica basica, Suporte, Redes, HTML, Manutencao.</p><p>Peca 3 colegas para <b>confirmarem</b>.</p></div>
+<div class="card"><div class="icon">🔗</div><h3>Extras que pesam</h3><ul><li>URL curta: linkedin.com/in/seunome</li><li>Botao “Tenho interesse em…” → Estagio</li><li>Adicione cursos com certificado</li></ul></div>
+</div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="step">06 — Macetes</span>
+<h2>5 truques de quem e chamado</h2>
+<div class="grid3">
+<div class="card"><h3>1️⃣ Palavra-chave</h3><p>Recrutador busca por palavra. Repita 3x: titulo, sobre e competencias. Ex: “estoque, logistica, inventario”.</p></div>
+<div class="card"><h3>2️⃣ Poste 1x na semana</h3><p>“Hoje apresentei meu projeto de ___ na feira do Duque de Caxias”. Foto + 3 linhas.</p></div>
+<div class="card"><h3>3️⃣ Conecte certo</h3><p>20/dia: professores, colegas, RH de Salvador. “Oi! Sou estudante de ___ no Duque de Caxias. Podemos conectar?”</p></div>
+</div>
+<div class="grid2">
+<div class="card"><h3>4️⃣ Selo “Open to Work”</h3><p>Ative no perfil → so para recrutadores. Nao precisa por na foto se tiver vergonha.</p></div>
+<div class="card"><h3>5️⃣ Peca recomendacao</h3><p>“Professor, pode escrever 2 linhas sobre meu projeto?” 1 recomendacao = 3x mais confianca.</p></div>
+</div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="kicker">7 • Vagas na pratica</span>
+<h2>Achar estagio em 4 toques</h2>
+<div class="grid2">
+<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> linkedin.com/jobs</div><div class="mock-body"><p style="font-size:13px"><b>1.</b> Busque: “Estagio + seu curso” → Salvador-BA</p><p style="font-size:13px"><b>2.</b> Filtros: Data → Ultima semana | Nivel → Estagio</p><p style="font-size:13px"><b>3.</b> Ative <span class="pill blue">🔔 Criar alerta</span></p><p style="font-size:13px"><b>4.</b> Prefira <span class="pill green">Candidatura simples</span></p></div></div>
+<div style="display:flex;flex-direction:column;gap:9px">
+<div class="check">📝 <span><b>Curriculo de 1 pagina:</b> nome, contato, objetivo, escolaridade, cursos, projetos, habilidades. PDF com seu nome.</span></div>
+<div class="check">💬 <span><b>Mensagem pos-candidatura:</b> “Ola! Candidatei-me a vaga X. Sou tecnico em ___ no Duque de Caxias. Posso enviar meu projeto?”</span></div>
+<div class="check">🚫 <span><b>Golpe?</b> Nunca pague, nunca passe codigo SMS, desconfie de salario alto demais.</span></div>
+</div></div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="step">08 — Nao tropece</span>
+<h2>Erros que queimam + desafio 7 dias</h2>
+<div class="grid2">
+<div class="card flag-no"><h3>❌ Evite</h3><ul><li>Foto de festa / meme no perfil</li><li>Xingar, brigar nos comentarios</li><li>“Aceito qualquer coisa” — seja especifico</li><li>Perfil vazio + sair pedindo emprego</li><li>Mentir curso ou certificado</li></ul></div>
+<div class="card flag-ok"><h3>✅ Desafio 7 dias</h3><ul><li><b>Dia 1-2:</b> criar perfil + foto + titulo</li><li><b>Dia 3:</b> Sobre + 3 experiencias escolares</li><li><b>Dia 4:</b> 5 competencias + URL curta</li><li><b>Dia 5:</b> conectar 20 pessoas</li><li><b>Dia 6-7:</b> alerta + candidatar a 5 vagas</li></ul></div>
+</div>
+</div></div>
+
+<div class="slide"><div class="slide-content">
+<span class="step">Encerramento — Duque de Caxias</span>
+<h2>Hoje voce sai com LinkedIn criado</h2>
+<p class="sub">Quem faz hoje sai na frente. Mercado chama quem aparece.</p>
+<div class="cta"><div class="qr">LINKED<br>IN<br><span style="font-size:11px;font-weight:400">linkedin.com</span></div>
+<div><h3 style="font-size:19px;margin-bottom:6px">Tarefa de sala (5 min):</h3><p style="font-size:14.5px;line-height:1.5">1. Criar conta • 2. Foto + titulo pronto • 3. Conectar professor + 2 colegas • 4. Ativar “Tenho interesse em estagio”.<br>Mostre ao professor e ganhe visto. ✅</p></div></div>
+<p style="font-size:11px;color:var(--muted)">Paleta oficial LinkedIn (#0A66C2 / #004182 / #F4F2EE) • Para o brasao oficial, substitua o SVG da capa • Para prints reais, capture com Win+Shift+S em linkedin.com/jobs.</p>
+</div></div>
+
+</div>
+<div class="nav-controls"><button class="nav-btn" onclick="prevSlide()">←</button><span class="slide-counter"><span id="current">1</span> / <span id="total">10</span></span><button class="nav-btn" onclick="nextSlide()">→</button></div>
+<script>
+let current=1;const total=document.querySelectorAll('.slide').length;document.getElementById('total').textContent=total;
+function showSlide(n){if(n<1)n=1;if(n>total)n=total;current=n;document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('active',i===n-1));document.getElementById('current').textContent=n;document.getElementById('progressBar').style.transform='scaleX('+(n/total)+')';}
+function nextSlide(){showSlide(current+1)}function prevSlide(){showSlide(current-1)}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();nextSlide()}if(e.key==='ArrowLeft'){e.preventDefault();prevSlide()}if(e.key.toLowerCase()==='f'){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen()}if(e.key.toLowerCase()==='p'){window.print()}});
+document.addEventListener('click',e=>{if(!e.target.closest('.nav-controls'))nextSlide()});
+showSlide(1);
+try{new Chart(document.getElementById('chartMotivos'),{type:'bar',data:{labels:['Perfil completo','Networking','Postar projeto','Cursos','Candidatura diaria'],datasets:[{data:[38,27,15,12,8],backgroundColor:['#0A66C2','#378FE9','#7AB8F5','#B9D9F8','#E8F3FC'],borderRadius:8}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},title:{display:true,text:'O que mais chama recrutador (%)',color:'#004182',font:{size:13}}},scales:{x:{grid:{color:'rgba(0,0,0,.06)'},ticks:{color:'#666'}},y:{grid:{display:false},ticks:{color:'#191919',font:{size:12}}}}}});}catch(e){}
+</script>
+</body>
+</html>
