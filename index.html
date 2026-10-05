@@ -10,7 +10,7 @@
   --li-blue:#0A66C2; --li-dark:#004182; --li-light:#E8F3FC;
   --bg:#F4F2EE; --card:#FFFFFF; --ink:#191919; --muted:#666666;
   --border:#E0DDD8; --green:#057642; --green-bg:#E7F5EC;
-  --amber:#7A5800; --amber-bg:#FDF3D7; --radius:16px;
+  --amber:#7A5800; --amber-bg:#FDF3D7; --red:#B3261E; --red-bg:#FBE9E7; --radius:16px;
   --ease-out:cubic-bezier(0.23,1,0.32,1);
   --font-h:'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
 }
@@ -38,7 +38,16 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 .card h3{font-size:16px;color:var(--li-dark);margin-bottom:6px}
 .card p,.card li{font-size:14px;color:#333;line-height:1.5}
 .card ul{padding-left:18px}
-.icon{width:38px;height:38px;border-radius:11px;background:var(--li-light);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:8px}
+.icon{width:38px;height:38px;border-radius:11px;background:var(--li-light);display:flex;align-items:center;justify-content:center;margin-bottom:8px;color:var(--li-blue)}
+.icon svg{width:20px;height:20px}
+.ic{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:var(--li-light);color:var(--li-dark);flex-shrink:0}
+.ic svg{width:15px;height:15px}
+.ic.ok{background:var(--green-bg);color:var(--green)}
+.ic.warn{background:var(--amber-bg);color:var(--amber)}
+.ic.no{background:var(--red-bg);color:var(--red)}
+h3 .ic{width:24px;height:24px;vertical-align:-6px;margin-right:6px}
+h3 .ic svg{width:14px;height:14px}
+.num{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:26px;padding:0 6px;border-radius:8px;background:var(--li-blue);color:#fff;font-size:13px;font-weight:800;margin-right:6px;vertical-align:1px}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
 .logos{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .badge-school{display:flex;align-items:center;gap:9px;background:#fff;border:1px solid var(--border);border-radius:999px;padding:5px 13px 5px 5px;font-size:13px;font-weight:600;color:var(--li-dark)}
@@ -59,15 +68,17 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 .mini-line{height:10px;border-radius:99px;background:#EAE6DF;margin:8px 0}
 .mini-btn{background:var(--li-blue);color:#fff;font-size:12px;font-weight:700;border-radius:99px;padding:6px 12px;display:inline-block;margin-top:6px}
 .job-row{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:10px;padding:9px;margin-top:8px}
-.job-logo{width:34px;height:34px;border-radius:8px;background:var(--li-light);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--li-blue);flex-shrink:0}
+.job-logo{width:34px;height:34px;border-radius:8px;background:var(--li-light);display:flex;align-items:center;justify-content:center;color:var(--li-blue);flex-shrink:0}
+.job-logo svg{width:18px;height:18px}
 .pill{font-size:11px;font-weight:700;padding:4px 10px;border-radius:99px;display:inline-block}
 .pill.green{background:var(--green-bg);color:var(--green)}.pill.amber{background:var(--amber-bg);color:var(--amber)}.pill.blue{background:var(--li-light);color:var(--li-dark)}
+.pill svg{width:12px;height:12px;vertical-align:-1px;margin-right:4px}
 .check{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:12px;padding:11px 13px;font-size:13.5px}
 .check b{color:var(--li-dark)}
 .cover-slide{background:linear-gradient(180deg,#fff 0%,#E8F3FC 55%,#D9EAFB 100%)}
 .cta{background:var(--li-blue);color:#fff;border-radius:var(--radius);padding:20px;display:flex;gap:16px;align-items:center;text-align:left}
 .qr{width:92px;height:92px;background:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--li-blue);font-weight:900;font-size:12px;text-align:center;line-height:1.3;flex-shrink:0}
-.flag-no{border-top:3px solid #C21F0A}
+.flag-no{border-top:3px solid var(--red)}
 .flag-ok{border-top:3px solid var(--green)}
 @media(max-width:900px){.hero-split{grid-template-columns:1fr}}
 @media(max-width:768px){.slide{padding:26px 18px}.grid2,.grid3{grid-template-columns:1fr;gap:10px}.hint{display:none}}
@@ -89,11 +100,11 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <h1 class="slide-title">LinkedIn sem mistério:<br><span>do zero ao primeiro estágio</span></h1>
 <p class="sub">Para quem nunca usou. Linguagem simples, passo a passo e exemplos prontos para copiar. Feita para as turmas do <b>Colegio Estadual Duque de Caxias</b>.</p>
 <div class="hero-split">
-<div class="card" style="background:transparent;border:none;box-shadow:none;padding:0"><div class="icon">🚀</div><h3 style="font-size:18px">Em 30 minutos voce sai com perfil criado e 5 vagas na mira.</h3><p style="font-size:11px;color:var(--muted)">Logos em SVG transparente (sem fundo branco). Brasao do colegio e representacao limpa.</p></div>
+<div class="card" style="background:transparent;border:none;box-shadow:none;padding:0"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg></div><h3 style="font-size:18px">Em 30 minutos voce sai com perfil criado e 5 vagas na mira.</h3><p style="font-size:11px;color:var(--muted)">Logos em SVG transparente (sem fundo branco). Brasao do colegio e representacao limpa.</p></div>
 <div class="hero-cards">
-<div class="card"><h3>🎯 Breve e direta</h3><p>10 telas. Sem enrolação.</p></div>
-<div class="card"><h3>🧰 Para tecnico</h3><p>Adm, Informatica, Logistica, Enfermagem.</p></div>
-<div class="card"><h3>💼 Com vaga</h3><p>Alertas e candidatura em 1 clique.</p></div>
+<div class="card"><h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></span>Breve e direta</h3><p>10 telas. Sem enrolação.</p></div>
+<div class="card"><h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><circle cx="4" cy="12" r="2"/><circle cx="12" cy="10" r="2"/><circle cx="20" cy="14" r="2"/></svg></span>Para tecnico</h3><p>Adm, Informatica, Logistica, Enfermagem.</p></div>
+<div class="card"><h3><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></span>Com vaga</h3><p>Alertas e candidatura em 1 clique.</p></div>
 </div>
 </div>
 </div></div>
@@ -103,9 +114,9 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <h2>LinkedIn e seu curriculo vivo + rede de contatos</h2>
 <p class="sub">Pense assim: <b>Instagram mostra sua vida. LinkedIn mostra seu lado profissional.</b> Recrutador procura gente la todo dia.</p>
 <div class="grid3">
-<div class="card"><div class="icon">📄</div><h3>Curriculo que se atualiza</h3><p>Curso, estagio, projeto, certificado. Tudo fica visivel no Google.</p></div>
-<div class="card"><div class="icon">🤝</div><h3>Rede que indica</h3><p>Colegas, professores, empresas. Muitas vagas vem por indicacao.</p></div>
-<div class="card"><div class="icon">📚</div><h3>Escola gratis</h3><p>Posts, vagas e cursos. Voce aprende como o mercado fala.</p></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></div><h3>Curriculo que se atualiza</h3><p>Curso, estagio, projeto, certificado. Tudo fica visivel no Google.</p></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>Rede que indica</h3><p>Colegas, professores, empresas. Muitas vagas vem por indicacao.</p></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><h3>Escola gratis</h3><p>Posts, vagas e cursos. Voce aprende como o mercado fala.</p></div>
 </div>
 <div class="card" style="display:flex;gap:12px;align-items:center"><span class="pill green">DADO</span><p>+1 bilhao de usuarios no mundo • 75 milhoes no Brasil • 9 em cada 10 recrutadores usam LinkedIn.</p></div>
 </div></div>
@@ -117,10 +128,10 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <div><div style="width:100%;height:250px"><canvas id="chartMotivos"></canvas></div>
 <p style="font-size:11px;color:var(--muted)">Grafico ilustrativo: o que mais ajuda tecnico a conseguir estagio.</p></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div class="check">✅ <span><b>Estagio e Jovem Aprendiz</b> — empresas postam primeiro no LinkedIn.</span></div>
-<div class="check">✅ <span><b>Sem experiencia?</b> Vale projeto da escola, feira, monitoria, voluntariado.</span></div>
-<div class="check">✅ <span><b>Professor vira ponte</b> — ele curte, comenta e te indica.</span></div>
-<div class="check">⚠️ <span><b>E gratis.</b> Nao pague Premium agora. O gratuito resolve.</span></div>
+<div class="check"><span class="ic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5.5"/></svg></span><span><b>Estagio e Jovem Aprendiz</b> — empresas postam primeiro no LinkedIn.</span></div>
+<div class="check"><span class="ic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5.5"/></svg></span><span><b>Sem experiencia?</b> Vale projeto da escola, feira, monitoria, voluntariado.</span></div>
+<div class="check"><span class="ic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5.5"/></svg></span><span><b>Professor vira ponte</b> — ele curte, comenta e te indica.</span></div>
+<div class="check"><span class="ic warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span><span><b>E gratis.</b> Nao pague Premium agora. O gratuito resolve.</span></div>
 </div></div>
 </div></div>
 
@@ -130,8 +141,8 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <p class="sub">Representacao simplificada do layout real — no seu celular e igual, azul e branco.</p>
 <div class="grid3">
 <div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Perfil</div><div class="mock-body"><div class="mini-profile-cover"></div><div class="mini-avatar">VC</div><div class="mini-line" style="width:70%"></div><div class="mini-line" style="width:50%"></div><span class="pill blue">Tecnico em Informatica • Salvador</span><br><span class="mini-btn">+ Seguir • Conectar</span></div></div>
-<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Feed</div><div class="mock-body"><div class="job-row"><div class="job-logo">🏢</div><div><b style="font-size:13px">Hospital Santa Clara</b><p style="font-size:12px;color:var(--muted)">Contratando estagiarios…</p></div></div><div class="mini-line"></div><div class="mini-line" style="width:80%"></div><span class="pill green">Curtir • Comentar • Repostar</span></div></div>
-<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Vagas</div><div class="mock-body"><div class="mini-line" style="width:90%;height:26px;background:var(--li-light)"></div><div class="job-row"><div class="job-logo">💼</div><div><b style="font-size:13px">Estagio Administrativo</b><p style="font-size:12px">R$ 800 • Hibrido • Salvador</p></div></div><span class="mini-btn">Candidatura simples</span></div></div>
+<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Feed</div><div class="mock-body"><div class="job-row"><div class="job-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 21v-4h6v4"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2"/></svg></div><div><b style="font-size:13px">Hospital Santa Clara</b><p style="font-size:12px;color:var(--muted)">Contratando estagiarios…</p></div></div><div class="mini-line"></div><div class="mini-line" style="width:80%"></div><span class="pill green">Curtir • Comentar • Repostar</span></div></div>
+<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> Vagas</div><div class="mock-body"><div class="mini-line" style="width:90%;height:26px;background:var(--li-light)"></div><div class="job-row"><div class="job-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg></div><div><b style="font-size:13px">Estagio Administrativo</b><p style="font-size:12px">R$ 800 • Hibrido • Salvador</p></div></div><span class="mini-btn">Candidatura simples</span></div></div>
 </div>
 <p style="font-size:11px;color:var(--muted)">Dica ao professor: abra linkedin.com no projetor e mostre ao vivo. Estes quadros sao guia para quando a internet falhar. Para prints reais, use Win+Shift+S.</p>
 </div></div>
@@ -140,8 +151,8 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <span class="step">04 — Perfil campeao, parte 1</span>
 <h2>Foto + capa + titulo = 1ª impressao</h2>
 <div class="grid2">
-<div class="card"><div class="icon">📸</div><h3>Foto (celular resolve)</h3><ul><li>Fundo claro, ombros pra cima, sorriso leve</li><li>Sem oculos escuros, sem filtro</li><li>Capa: cor solida ou foto da sua area</li></ul><br><h3>Titulo — copie e adapte:</h3><p style="background:var(--bg);border-radius:8px;padding:10px">“Estudante de Tecnico em ___ | Busco estagio em ___ | Salvador-BA”</p><p style="font-size:12px">Ex: <i>Estudante de Tecnico em Administracao | Busco estagio administrativo | Salvador-BA</i></p></div>
-<div class="card"><div class="icon">✍️</div><h3>Sobre — 4 linhas prontas</h3><p>“Sou [nome], estudante do [curso] no Colegio Duque de Caxias. Tenho [Excel, atendimento, manutencao…]. Fiz [projeto/feira/curso]. Busco estagio para aprender na pratica e ajudar a equipe.”</p><br><span class="pill amber">Evite</span><p>Deixar em branco • “Em busca de oportunidades” sem dizer qual • Erro de portugues — revise.</p></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div><h3>Foto (celular resolve)</h3><ul><li>Fundo claro, ombros pra cima, sorriso leve</li><li>Sem oculos escuros, sem filtro</li><li>Capa: cor solida ou foto da sua area</li></ul><br><h3>Titulo — copie e adapte:</h3><p style="background:var(--bg);border-radius:8px;padding:10px">“Estudante de Tecnico em ___ | Busco estagio em ___ | Salvador-BA”</p><p style="font-size:12px">Ex: <i>Estudante de Tecnico em Administracao | Busco estagio administrativo | Salvador-BA</i></p></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div><h3>Sobre — 4 linhas prontas</h3><p>“Sou [nome], estudante do [curso] no Colegio Duque de Caxias. Tenho [Excel, atendimento, manutencao…]. Fiz [projeto/feira/curso]. Busco estagio para aprender na pratica e ajudar a equipe.”</p><br><span class="pill amber">Evite</span><p>Deixar em branco • “Em busca de oportunidades” sem dizer qual • Erro de portugues — revise.</p></div>
 </div>
 </div></div>
 
@@ -149,9 +160,9 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <span class="step">05 — Perfil campeao, parte 2</span>
 <h2>Experiencia conta mesmo sem emprego</h2>
 <div class="grid3">
-<div class="card"><div class="icon">🛠️</div><h3>O que colocar</h3><ul><li>Projeto escolar / TCC</li><li>Feira, monitoria, voluntariado</li><li>Curso livre + certificado</li><li>Informal vale: “Ajuda na loja — caixa e estoque”</li></ul></div>
-<div class="card"><div class="icon">🏅</div><h3>Competencias (5)</h3><p>Adm: Excel, Atendimento, Organizacao, Rotinas administrativas, Canva.<br>Info: Informatica basica, Suporte, Redes, HTML, Manutencao.</p><p>Peca 3 colegas para <b>confirmarem</b>.</p></div>
-<div class="card"><div class="icon">🔗</div><h3>Extras que pesam</h3><ul><li>URL curta: linkedin.com/in/seunome</li><li>Botao “Tenho interesse em…” → Estagio</li><li>Adicione cursos com certificado</li></ul></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><h3>O que colocar</h3><ul><li>Projeto escolar / TCC</li><li>Feira, monitoria, voluntariado</li><li>Curso livre + certificado</li><li>Informal vale: “Ajuda na loja — caixa e estoque”</li></ul></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></div><h3>Competencias (5)</h3><p>Adm: Excel, Atendimento, Organizacao, Rotinas administrativas, Canva.<br>Info: Informatica basica, Suporte, Redes, HTML, Manutencao.</p><p>Peca 3 colegas para <b>confirmarem</b>.</p></div>
+<div class="card"><div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><h3>Extras que pesam</h3><ul><li>URL curta: linkedin.com/in/seunome</li><li>Botao “Tenho interesse em…” → Estagio</li><li>Adicione cursos com certificado</li></ul></div>
 </div>
 </div></div>
 
@@ -159,13 +170,13 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <span class="step">06 — Macetes</span>
 <h2>5 truques de quem e chamado</h2>
 <div class="grid3">
-<div class="card"><h3>1️⃣ Palavra-chave</h3><p>Recrutador busca por palavra. Repita 3x: titulo, sobre e competencias. Ex: “estoque, logistica, inventario”.</p></div>
-<div class="card"><h3>2️⃣ Poste 1x na semana</h3><p>“Hoje apresentei meu projeto de ___ na feira do Duque de Caxias”. Foto + 3 linhas.</p></div>
-<div class="card"><h3>3️⃣ Conecte certo</h3><p>20/dia: professores, colegas, RH de Salvador. “Oi! Sou estudante de ___ no Duque de Caxias. Podemos conectar?”</p></div>
+<div class="card"><h3><span class="num">1</span>Palavra-chave</h3><p>Recrutador busca por palavra. Repita 3x: titulo, sobre e competencias. Ex: “estoque, logistica, inventario”.</p></div>
+<div class="card"><h3><span class="num">2</span>Poste 1x na semana</h3><p>“Hoje apresentei meu projeto de ___ na feira do Duque de Caxias”. Foto + 3 linhas.</p></div>
+<div class="card"><h3><span class="num">3</span>Conecte certo</h3><p>20/dia: professores, colegas, RH de Salvador. “Oi! Sou estudante de ___ no Duque de Caxias. Podemos conectar?”</p></div>
 </div>
 <div class="grid2">
-<div class="card"><h3>4️⃣ Selo “Open to Work”</h3><p>Ative no perfil → so para recrutadores. Nao precisa por na foto se tiver vergonha.</p></div>
-<div class="card"><h3>5️⃣ Peca recomendacao</h3><p>“Professor, pode escrever 2 linhas sobre meu projeto?” 1 recomendacao = 3x mais confianca.</p></div>
+<div class="card"><h3><span class="num">4</span>Selo “Open to Work”</h3><p>Ative no perfil → so para recrutadores. Nao precisa por na foto se tiver vergonha.</p></div>
+<div class="card"><h3><span class="num">5</span>Peca recomendacao</h3><p>“Professor, pode escrever 2 linhas sobre meu projeto?” 1 recomendacao = 3x mais confianca.</p></div>
 </div>
 </div></div>
 
@@ -173,11 +184,11 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <span class="kicker">7 • Vagas na pratica</span>
 <h2>Achar estagio em 4 toques</h2>
 <div class="grid2">
-<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> linkedin.com/jobs</div><div class="mock-body"><p style="font-size:13px"><b>1.</b> Busque: “Estagio + seu curso” → Salvador-BA</p><p style="font-size:13px"><b>2.</b> Filtros: Data → Ultima semana | Nivel → Estagio</p><p style="font-size:13px"><b>3.</b> Ative <span class="pill blue">🔔 Criar alerta</span></p><p style="font-size:13px"><b>4.</b> Prefira <span class="pill green">Candidatura simples</span></p></div></div>
+<div class="mock"><div class="mock-head"><span class="dots"><i></i><i></i><i></i></span> linkedin.com/jobs</div><div class="mock-body"><p style="font-size:13px"><b>1.</b> Busque: “Estagio + seu curso” → Salvador-BA</p><p style="font-size:13px"><b>2.</b> Filtros: Data → Ultima semana | Nivel → Estagio</p><p style="font-size:13px"><b>3.</b> Ative <span class="pill blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Criar alerta</span></p><p style="font-size:13px"><b>4.</b> Prefira <span class="pill green">Candidatura simples</span></p></div></div>
 <div style="display:flex;flex-direction:column;gap:9px">
-<div class="check">📝 <span><b>Curriculo de 1 pagina:</b> nome, contato, objetivo, escolaridade, cursos, projetos, habilidades. PDF com seu nome.</span></div>
-<div class="check">💬 <span><b>Mensagem pos-candidatura:</b> “Ola! Candidatei-me a vaga X. Sou tecnico em ___ no Duque de Caxias. Posso enviar meu projeto?”</span></div>
-<div class="check">🚫 <span><b>Golpe?</b> Nunca pague, nunca passe codigo SMS, desconfie de salario alto demais.</span></div>
+<div class="check"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></svg></span><span><b>Curriculo de 1 pagina:</b> nome, contato, objetivo, escolaridade, cursos, projetos, habilidades. PDF com seu nome.</span></div>
+<div class="check"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></span><span><b>Mensagem pos-candidatura:</b> “Ola! Candidatei-me a vaga X. Sou tecnico em ___ no Duque de Caxias. Posso enviar meu projeto?”</span></div>
+<div class="check"><span class="ic no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></span><span><b>Golpe?</b> Nunca pague, nunca passe codigo SMS, desconfie de salario alto demais.</span></div>
 </div></div>
 </div></div>
 
@@ -185,8 +196,8 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <span class="step">08 — Nao tropece</span>
 <h2>Erros que queimam + desafio 7 dias</h2>
 <div class="grid2">
-<div class="card flag-no"><h3>❌ Evite</h3><ul><li>Foto de festa / meme no perfil</li><li>Xingar, brigar nos comentarios</li><li>“Aceito qualquer coisa” — seja especifico</li><li>Perfil vazio + sair pedindo emprego</li><li>Mentir curso ou certificado</li></ul></div>
-<div class="card flag-ok"><h3>✅ Desafio 7 dias</h3><ul><li><b>Dia 1-2:</b> criar perfil + foto + titulo</li><li><b>Dia 3:</b> Sobre + 3 experiencias escolares</li><li><b>Dia 4:</b> 5 competencias + URL curta</li><li><b>Dia 5:</b> conectar 20 pessoas</li><li><b>Dia 6-7:</b> alerta + candidatar a 5 vagas</li></ul></div>
+<div class="card flag-no"><h3><span class="ic no"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-6 6M9 9l6 6"/></svg></span>Evite</h3><ul><li>Foto de festa / meme no perfil</li><li>Xingar, brigar nos comentarios</li><li>“Aceito qualquer coisa” — seja especifico</li><li>Perfil vazio + sair pedindo emprego</li><li>Mentir curso ou certificado</li></ul></div>
+<div class="card flag-ok"><h3><span class="ic ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5.5"/></svg></span>Desafio 7 dias</h3><ul><li><b>Dia 1-2:</b> criar perfil + foto + titulo</li><li><b>Dia 3:</b> Sobre + 3 experiencias escolares</li><li><b>Dia 4:</b> 5 competencias + URL curta</li><li><b>Dia 5:</b> conectar 20 pessoas</li><li><b>Dia 6-7:</b> alerta + candidatar a 5 vagas</li></ul></div>
 </div>
 </div></div>
 
@@ -195,7 +206,7 @@ p.sub{font-size:clamp(15px,1.7vw,19px);color:var(--muted);line-height:1.5;max-wi
 <h2>Hoje voce sai com LinkedIn criado</h2>
 <p class="sub">Quem faz hoje sai na frente. Mercado chama quem aparece.</p>
 <div class="cta"><div class="qr">LINKED<br>IN<br><span style="font-size:11px;font-weight:400">linkedin.com</span></div>
-<div><h3 style="font-size:19px;margin-bottom:6px">Tarefa de sala (5 min):</h3><p style="font-size:14.5px;line-height:1.5">1. Criar conta • 2. Foto + titulo pronto • 3. Conectar professor + 2 colegas • 4. Ativar “Tenho interesse em estagio”.<br>Mostre ao professor e ganhe visto. ✅</p></div></div>
+<div><h3 style="font-size:19px;margin-bottom:6px">Tarefa de sala (5 min):</h3><p style="font-size:14.5px;line-height:1.5">1. Criar conta • 2. Foto + titulo pronto • 3. Conectar professor + 2 colegas • 4. Ativar “Tenho interesse em estagio”.<br>Mostre ao professor e ganhe visto. <span class="ic ok" style="vertical-align:-7px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 5-5.5"/></svg></span></p></div></div>
 <p style="font-size:11px;color:var(--muted)">Paleta oficial LinkedIn (#0A66C2 / #004182 / #F4F2EE) • Para o brasao oficial, substitua o SVG da capa • Para prints reais, capture com Win+Shift+S em linkedin.com/jobs.</p>
 </div></div>
 
